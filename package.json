@@ -1,0 +1,22 @@
+{
+  "name": "whats-the-weather",
+  "version": "1.0.0",
+  "description": "**Objective**: Use Node.js's `http` module to make HTTP requests to `Open Weather Map`, and parse the response object to fetch the current weather of a city.",
+  "main": "weather.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaycribas/whats-the-weather.git"
+  },
+  "author": "Jay Cribas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaycribas/whats-the-weather/issues"
+  },
+  "homepage": "https://github.com/jaycribas/whats-the-weather#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
