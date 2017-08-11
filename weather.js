@@ -1,27 +1,31 @@
 const http = require('http')
 require('dotenv').load()
 
+// process, global object
 const cityInput = process.argv[2]
 
 getWeather(cityInput)
 
 function getWeather(city){
-  const request =
-    http.request('http://api.openweathermap.org/data/2.5/weather?q=' +
+  let queryUrl =
+    'http://api.openweathermap.org/data/2.5/weather?q=' +
     city.split(' ').join('+') +
-    '&APPID=' + process.env.API_KEY,
-    res => {
-      var body = ''
-      res.on('data', data => {
-        body += data
-      })
-      res.on('end', () => {
-        let json = JSON.parse(body)
-        let farenheit = convertKtoF(json.main.temp)
-        console.log(`Temperature in ${city}: ${farenheit}`)
-      })
+    '&APPID=' + process.env.API_KEY
+
+  http.get(queryUrl, response => {
+    let body = ''
+    // concatenates the stream of data
+    response.on('data', data => {
+      body += data
     })
-  request.end()
+
+    response.on('end', () => {
+      //uses the native JSON object to parse data into object
+      let json = JSON.parse(body)
+      let farenheit = convertKtoF(json.main.temp)
+      console.log(`Temperature in ${city}: ${farenheit}`)
+    })
+  })
 }
 
 function convertKtoF(kelvin){
